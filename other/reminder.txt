@@ -1,0 +1,30 @@
+
+message Topic {
+    Timestamp create_time = 1;
+    string name = 2;
+    int32 id = 3;
+    int32 score = 4;
+    int32 status = 5;
+}
+
+message Comment {
+	string content = 1;
+	Timestap create_time = 2;
+	int32 message_id = 3;
+	int32 score = 4;
+	int32 status = 5;
+	int32 id = 6;
+}
+
+
+
+https://medium.com/
+Header: 
+Search
+分页 Topic
+
+Top 3
+Potential
+Rest
+
+footer
