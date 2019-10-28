@@ -4,18 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.duan.talk</groupId>
-    <artifactId>talk</artifactId>
+    <groupId>com.duan.issue</groupId>
+    <artifactId>issue</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>talk-api</module>
+        <module>issue-api</module>
 
-        <module>service/talk-service-topic</module>
-        <module>service/impl/talk-service-topic-impl</module>
+        <module>service/issue-service-topic</module>
+        <module>service/impl/issue-service-topic-impl</module>
 
-        <module>service/talk-service-comment</module>
-        <module>service/impl/talk-service-comment-impl</module>
+        <module>service/issue-service-comment</module>
+        <module>service/impl/issue-service-comment-impl</module>
+
+        <module>service/issue-service-manage</module>
+        <module>service/impl/issue-service-manage-impl</module>
 
     </modules>
 
