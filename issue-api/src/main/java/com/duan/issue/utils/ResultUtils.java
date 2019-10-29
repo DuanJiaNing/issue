@@ -2,6 +2,8 @@ package com.duan.issue.utils;
 
 import com.duan.issue.common.ResultModel;
 import com.github.pagehelper.Page;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
@@ -10,20 +12,32 @@ import java.io.Serializable;
  *
  * @author DuanJiaNing
  */
+@Slf4j
 public class ResultUtils {
 
-    public static ResultModel fail(String msg) {
+    // user understandable
+    public static ResultModel error(String msg) {
         ResultModel rm = new ResultModel();
         rm.setMsg(msg);
-        rm.setCode(ResultModel.FAIL);
+        rm.setCode(HttpStatus.OK.value());
+        return rm;
+    }
+
+    // user can not understand, dev can
+    public static ResultModel fail(String msg, HttpStatus httpCode) {
+        ResultModel rm = new ResultModel();
+        rm.setMsg(msg);
+        rm.setCode(httpCode.value());
         return rm;
     }
 
     public static ResultModel fail(Throwable e) {
         e.printStackTrace();
+        log.error("error when handle request", e);
+
         ResultModel rm = new ResultModel();
-        rm.setMsg("fail");
-        rm.setCode(ResultModel.FAIL);
+        rm.setMsg(e.getMessage());
+        rm.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         return rm;
     }
 
@@ -31,7 +45,7 @@ public class ResultUtils {
         ResultModel<T> rm = new ResultModel<T>();
         rm.setMsg("success");
         rm.setData(data);
-        rm.setCode(ResultModel.SUCCESS);
+        rm.setCode(HttpStatus.OK.value());
         return rm;
     }
 

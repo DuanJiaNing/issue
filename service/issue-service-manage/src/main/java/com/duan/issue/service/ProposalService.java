@@ -1,8 +1,7 @@
 package com.duan.issue.service;
 
 import com.duan.issue.common.dto.ProposalDTO;
-import com.duan.issue.common.enums.ModelType;
-import com.duan.issue.common.enums.ProposalType;
+import com.duan.issue.common.enums.SubjectType;
 import com.duan.issue.common.exceptions.ProposalException;
 
 /**
@@ -12,7 +11,7 @@ import com.duan.issue.common.exceptions.ProposalException;
  */
 public interface ProposalService {
 
-    ProposalDTO proposal(ModelType model, ProposalType proposal) throws ProposalException;
+    ProposalDTO proposalDeleteSubject(int subjectId, SubjectType type, String reason) throws ProposalException;
 
     ProposalDTO agree(int id);
 

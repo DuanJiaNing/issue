@@ -12,6 +12,9 @@ import java.io.Serializable;
 @Data
 public class ProposalDTO implements Serializable {
 
+    private static final long serialVersionUID = 5902332795340004546L;
     private String id;
+    private String reason;
+    private Integer subjectId;
 
 }

@@ -8,6 +8,7 @@ import com.duan.issue.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,7 +27,11 @@ public class CommentController {
     @PostMapping
     public ResultModel<CommentDTO> add(@RequestBody CommentDTO comment) {
         if (StringUtils.isBlank(comment.getContent())) {
-            return ResultUtils.fail("请输入内容");
+            return ResultUtils.error("请输入内容"); // TODO 字数限制
+        }
+
+        if (comment.getTopicId() == null) {
+            return ResultUtils.fail("missing parameter: topicId", HttpStatus.BAD_REQUEST);
         }
 
         try {

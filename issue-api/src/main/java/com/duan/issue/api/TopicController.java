@@ -12,6 +12,7 @@ import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,7 +34,7 @@ public class TopicController {
     @PostMapping
     public ResultModel<TopicDTO> add(@RequestBody TopicDTO topic) {
         if (StringUtils.isBlank(topic.getTitle())) {
-            return ResultUtils.fail("请输入标题");
+            return ResultUtils.error("请输入标题"); // TODO 字数限制
         }
 
         try {
@@ -68,7 +69,7 @@ public class TopicController {
                                                           @RequestParam Integer currentPage,
                                                           @RequestParam Integer pageSize) {
         if (currentPage < 0 || pageSize <= 0) {
-            return ResultUtils.fail("参数错误");
+            return ResultUtils.fail("currentPage or pageSize incorrect", HttpStatus.BAD_REQUEST);
         }
 
         Page<CommentDTO> page = commentService.listByTopic(topicId, new PageInfo(currentPage, pageSize));

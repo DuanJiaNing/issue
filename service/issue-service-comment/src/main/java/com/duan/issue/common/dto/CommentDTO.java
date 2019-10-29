@@ -13,9 +13,10 @@ import java.io.Serializable;
 public class CommentDTO implements Serializable {
 
     private static final long serialVersionUID = 683131330933446817L;
-    private String content;
     private Integer status;
+    private String content;
     private Integer like;
+    private Integer topicId;
     private Integer dislike;
 
 }

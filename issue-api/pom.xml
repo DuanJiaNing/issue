@@ -37,6 +37,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.duan.issue</groupId>
+            <artifactId>issue-service-manage</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>

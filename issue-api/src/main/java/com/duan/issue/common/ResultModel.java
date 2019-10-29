@@ -13,8 +13,6 @@ import java.io.Serializable;
 public class ResultModel<T extends Serializable> implements Serializable {
 
     private static final long serialVersionUID = -2615507408225254664L;
-    public static final int SUCCESS = 200;
-    public static final int FAIL = 500;
 
     private String msg;
     private Integer code;

@@ -5,7 +5,7 @@ package com.duan.issue.common.enums;
  *
  * @author DuanJiaNing
  */
-public enum ModelType {
+public enum SubjectType {
 
     TOPIC,
     COMMENT
