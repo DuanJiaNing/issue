@@ -1,0 +1,7 @@
+config:
+  topic:
+    word-limit: 20
+  comment:
+    word-limit: 300
+  manage:
+    proposal-world-limit: 500

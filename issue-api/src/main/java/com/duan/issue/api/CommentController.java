@@ -3,11 +3,13 @@ package com.duan.issue.api;
 import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.exceptions.CommentException;
+import com.duan.issue.config.Config;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +26,18 @@ public class CommentController {
     @Reference
     private CommentService commentService;
 
+    @Autowired
+    private Config config;
+
     @PostMapping
     public ResultModel<CommentDTO> add(@RequestBody CommentDTO comment) {
         if (StringUtils.isBlank(comment.getContent())) {
-            return ResultUtils.error("请输入内容"); // TODO 字数限制
+            return ResultUtils.error("请输入内容");
+        }
+
+        Config.Comment commentC = config.comment();
+        if (comment.getContent().length() > commentC.getWordLimit()) {
+            return ResultUtils.error("字数需要控制在 " + commentC.getWordLimit() + " 字以内");
         }
 
         if (comment.getTopicId() == null) {

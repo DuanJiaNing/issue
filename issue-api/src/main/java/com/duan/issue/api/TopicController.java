@@ -5,6 +5,7 @@ import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.dto.PageInfo;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.exceptions.TopicException;
+import com.duan.issue.config.Config;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.service.TopicService;
 import com.duan.issue.utils.ResultUtils;
@@ -12,6 +13,7 @@ import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +33,18 @@ public class TopicController {
     @Reference
     private CommentService commentService;
 
+    @Autowired
+    private Config config;
+
     @PostMapping
     public ResultModel<TopicDTO> add(@RequestBody TopicDTO topic) {
         if (StringUtils.isBlank(topic.getTitle())) {
-            return ResultUtils.error("请输入标题"); // TODO 字数限制
+            return ResultUtils.error("请输入标题");
+        }
+
+        Config.Topic topicC = config.topic();
+        if (topic.getTitle().length() > topicC.getWordLimit()) {
+            return ResultUtils.error("字数需要控制在 " + topicC.getWordLimit() + " 字以内");
         }
 
         try {
