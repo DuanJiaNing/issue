@@ -1,4 +1,4 @@
-package com.duan.issue.entity;
+package com.duan.issue.common.entity;
 
 import lombok.Data;
 
@@ -14,12 +14,12 @@ import java.sql.Timestamp;
 public class Proposal implements Serializable {
 
     private static final long serialVersionUID = -3874340109656211334L;
-    private String id;
+    private Integer id;
     private Timestamp insertTime;
 
     private Integer proposalType;
     private Integer subjectType;
-    private String subjectId;
+    private Integer subjectId;
     private Integer agree;
     private Integer disagree;
 

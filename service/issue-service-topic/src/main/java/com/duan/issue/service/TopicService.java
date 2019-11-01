@@ -13,10 +13,10 @@ public interface TopicService {
 
     TopicDTO get(int id);
 
-    TopicDTO like(int id);
+    TopicDTO like(int id) throws TopicException;
 
-    TopicDTO dislike(int id);
+    TopicDTO dislike(int id) throws TopicException;
 
-    TopicDTO add(TopicDTO topic) throws TopicException;
+    TopicDTO add(String topic, String notes) throws TopicException;
 
 }

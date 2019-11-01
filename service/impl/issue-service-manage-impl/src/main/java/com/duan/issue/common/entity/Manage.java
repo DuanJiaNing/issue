@@ -1,4 +1,4 @@
-package com.duan.issue.entity;
+package com.duan.issue.common.entity;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Data
 public class Manage implements Serializable {
 
-    private String id;
+    private Integer id;
     private Timestamp insertTime;
 
     private Integer status;

@@ -11,7 +11,7 @@ import com.duan.issue.service.TopicService;
 import com.duan.issue.utils.ResultUtils;
 import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,23 +37,22 @@ public class TopicController {
     private Config config;
 
     @PostMapping
-    public ResultModel<TopicDTO> add(@RequestBody TopicDTO topic) {
-        if (StringUtils.isBlank(topic.getTitle())) {
+    public ResultModel<TopicDTO> add(@RequestParam String title, @RequestParam String notes) {
+        if (StringUtils.isBlank(title)) {
             return ResultUtils.error("请输入标题");
         }
 
         Config.Topic topicC = config.topic();
-        if (topic.getTitle().length() > topicC.getWordLimit()) {
+        if (title.length() > topicC.getWordLimit()) {
             return ResultUtils.error("字数需要控制在 " + topicC.getWordLimit() + " 字以内");
         }
 
         try {
-            topic = topicService.add(topic);
+            TopicDTO topic = topicService.add(title, notes);
+            return ResultUtils.success(topic);
         } catch (TopicException e) {
             return ResultUtils.fail(e);
         }
-
-        return ResultUtils.success(topic);
     }
 
     @GetMapping("/{topicId}")
@@ -64,14 +63,22 @@ public class TopicController {
 
     @PutMapping("/{topicId}/like")
     public ResultModel<TopicDTO> like(@PathVariable Integer topicId) {
-        TopicDTO topic = topicService.like(topicId);
-        return ResultUtils.success(topic);
+        try {
+            TopicDTO topic = topicService.like(topicId);
+            return ResultUtils.success(topic);
+        } catch (TopicException e) {
+            return ResultUtils.fail(e);
+        }
     }
 
     @PutMapping("/{topicId}/dislike")
     public ResultModel<TopicDTO> dislike(@PathVariable Integer topicId) {
-        TopicDTO topic = topicService.dislike(topicId);
-        return ResultUtils.success(topic);
+        try {
+            TopicDTO topic = topicService.dislike(topicId);
+            return ResultUtils.success(topic);
+        } catch (TopicException e) {
+            return ResultUtils.fail(e);
+        }
     }
 
     @GetMapping("/{topicId}/comments")

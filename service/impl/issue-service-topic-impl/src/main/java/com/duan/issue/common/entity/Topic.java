@@ -1,4 +1,4 @@
-package com.duan.issue.entity;
+package com.duan.issue.common.entity;
 
 import lombok.Data;
 
@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class Topic implements Serializable {
 
     private static final long serialVersionUID = -256865085363011189L;
-    private String id;
+    private Integer id;
     private Timestamp insertTime;
 
     private Integer status;

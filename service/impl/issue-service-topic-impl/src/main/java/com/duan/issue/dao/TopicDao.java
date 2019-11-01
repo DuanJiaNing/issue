@@ -1,6 +1,6 @@
 package com.duan.issue.dao;
 
-import com.duan.issue.entity.Topic;
+import com.duan.issue.common.entity.Topic;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TopicDao extends BaseDao<Topic> {
+
+    Topic findById(int id);
 
 }

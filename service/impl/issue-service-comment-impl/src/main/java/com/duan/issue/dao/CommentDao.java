@@ -1,6 +1,6 @@
 package com.duan.issue.dao;
 
-import com.duan.issue.entity.Comment;
+import com.duan.issue.common.entity.Comment;
 import org.springframework.stereotype.Repository;
 
 /**
