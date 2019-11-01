@@ -7,6 +7,7 @@ package com.duan.issue.common;
  */
 public enum TopicStatus {
 
+    // do not reorder, someone is relay on ordinal() method
     FINE,
     PROPOSAL,
     DELETED

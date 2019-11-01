@@ -35,7 +35,7 @@ public class TopicServiceImpl implements TopicService {
 
     private void update(Topic tp) throws TopicException {
         if (topicDao.update(tp) != 1) {
-            throw new TopicException("Fail to like topic", new InternalException("DB"));
+            throw new TopicException("Fail to update topic", new InternalException("DB"));
         }
     }
 
@@ -87,6 +87,7 @@ public class TopicServiceImpl implements TopicService {
         if (StringUtils.isNotBlank(notes)) {
             topic.setNotes(notes);
         }
+        topic.setTitle(title);
         topic.setStatus(TopicStatus.FINE.ordinal());
         topic.setLike(0);
         topic.setDislike(0);

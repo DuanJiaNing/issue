@@ -3,6 +3,7 @@ package com.duan.issue.common.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Created on 2019/10/25.
@@ -13,6 +14,9 @@ import java.io.Serializable;
 public class CommentDTO implements Serializable {
 
     private static final long serialVersionUID = 683131330933446817L;
+    private Integer id;
+    private Timestamp insertTime;
+
     private Integer status;
     private String content;
     private Integer like;

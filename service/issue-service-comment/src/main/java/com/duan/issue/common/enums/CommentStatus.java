@@ -7,6 +7,7 @@ package com.duan.issue.common.enums;
  */
 public enum CommentStatus {
 
+    // do not reorder, someone is relay on ordinal() method
     FINE,
     PROPOSAL,
     DELETED

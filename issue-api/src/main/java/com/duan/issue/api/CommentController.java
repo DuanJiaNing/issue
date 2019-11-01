@@ -4,6 +4,7 @@ import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.exceptions.CommentException;
 import com.duan.issue.config.Config;
+import com.duan.issue.manager.CommonManager;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -27,30 +28,32 @@ public class CommentController {
     private CommentService commentService;
 
     @Autowired
+    private CommonManager commonManager;
+
+    @Autowired
     private Config config;
 
     @PostMapping
-    public ResultModel<CommentDTO> add(@RequestBody CommentDTO comment) {
-        if (StringUtils.isBlank(comment.getContent())) {
+    public ResultModel<CommentDTO> add(@RequestParam String content, @RequestParam Integer topicId) {
+        if (StringUtils.isBlank(content)) {
             return ResultUtils.error("请输入内容");
         }
 
         Config.Comment commentC = config.comment();
-        if (comment.getContent().length() > commentC.getWordLimit()) {
+        if (content.length() > commentC.getWordLimit()) {
             return ResultUtils.error("字数需要控制在 " + commentC.getWordLimit() + " 字以内");
         }
 
-        if (comment.getTopicId() == null) {
-            return ResultUtils.fail("missing parameter: topicId", HttpStatus.BAD_REQUEST);
+        if (!commonManager.topicExist(topicId)) {
+            return ResultUtils.fail("topic is not exist: id=" + topicId, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         try {
-            comment = commentService.add(comment);
+            CommentDTO comment = commentService.add(content, topicId);
+            return ResultUtils.success(comment);
         } catch (CommentException e) {
             return ResultUtils.fail(e);
         }
-
-        return ResultUtils.success(comment);
     }
 
     @GetMapping("/{commentId}")
@@ -61,14 +64,22 @@ public class CommentController {
 
     @PutMapping("/{commentId}/dislike")
     public ResultModel<CommentDTO> dislike(@PathVariable Integer commentId) {
-        CommentDTO comment = commentService.dislike(commentId);
-        return ResultUtils.success(comment);
+        try {
+            CommentDTO comment = commentService.dislike(commentId);
+            return ResultUtils.success(comment);
+        } catch (CommentException e) {
+            return ResultUtils.fail(e);
+        }
     }
 
     @PutMapping("/{commentId}/like")
     public ResultModel<CommentDTO> like(@PathVariable Integer commentId) {
-        CommentDTO comment = commentService.like(commentId);
-        return ResultUtils.success(comment);
+        try {
+            CommentDTO comment = commentService.like(commentId);
+            return ResultUtils.success(comment);
+        } catch (CommentException e) {
+            return ResultUtils.fail(e);
+        }
     }
 
 }

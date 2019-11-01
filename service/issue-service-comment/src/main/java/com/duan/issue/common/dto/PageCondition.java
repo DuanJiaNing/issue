@@ -1,6 +1,8 @@
 package com.duan.issue.common.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -10,7 +12,9 @@ import java.io.Serializable;
  * @author DuanJiaNing
  */
 @Data
-public class PageInfo implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class PageCondition implements Serializable {
 
     private static final long serialVersionUID = -8513040746063864619L;
     private Integer currentPage;

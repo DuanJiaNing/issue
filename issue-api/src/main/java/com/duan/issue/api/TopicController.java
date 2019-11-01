@@ -2,7 +2,7 @@ package com.duan.issue.api;
 
 import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.CommentDTO;
-import com.duan.issue.common.dto.PageInfo;
+import com.duan.issue.common.dto.PageCondition;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.exceptions.TopicException;
 import com.duan.issue.config.Config;
@@ -89,7 +89,7 @@ public class TopicController {
             return ResultUtils.fail("currentPage or pageSize incorrect", HttpStatus.BAD_REQUEST);
         }
 
-        Page<CommentDTO> page = commentService.listByTopic(topicId, new PageInfo(currentPage, pageSize));
+        Page<CommentDTO> page = commentService.listByTopic(topicId, new PageCondition(currentPage, pageSize));
         if (ResultUtils.emptyPage(page)) {
             return ResultUtils.success(null);
         }
