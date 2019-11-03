@@ -9,7 +9,8 @@ spring:
     default-property-inclusion: NON_NULL
 
   datasource:
-    url: jdbc:mysql://localhost:3306/issue_comment?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/issue_comment?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://123.57.237.176:3306/issue_comment?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource

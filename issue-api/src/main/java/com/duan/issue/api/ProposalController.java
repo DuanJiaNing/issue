@@ -3,7 +3,7 @@ package com.duan.issue.api;
 import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.ProposalDTO;
 import com.duan.issue.common.enums.ProposalResponseType;
-import com.duan.issue.common.enums.SubjectType;
+import com.duan.issue.common.enums.ProposalSubjectType;
 import com.duan.issue.common.exceptions.ProposalException;
 import com.duan.issue.config.Config;
 import com.duan.issue.service.ProposalService;
@@ -34,7 +34,7 @@ public class ProposalController {
     @PostMapping(":DELETE/{subjectType: TOPIC | COMMENT}")
     public ResultModel<ProposalDTO> proposalDeleteComment(@PathVariable String subjectType,
                                                           @RequestBody ProposalDTO proposal) {
-        SubjectType st = SubjectType.valueOf(subjectType);
+        ProposalSubjectType st = ProposalSubjectType.valueOf(subjectType);
         if (StringUtils.isBlank(proposal.getReason())) {
             return ResultUtils.error("请输入原因");
         }
@@ -59,11 +59,15 @@ public class ProposalController {
     @PutMapping(":{response: AGREE | DISAGREE}/{proposalId}")
     public ResultModel<ProposalDTO> agreeProposal(@PathVariable Integer proposalId, @PathVariable String response) {
         ProposalResponseType pt = ProposalResponseType.valueOf(response);
-        switch (pt) {
-            case AGREE:
-                return ResultUtils.success(proposalService.agree(proposalId));
-            case DISAGREE:
-                return ResultUtils.success(proposalService.disagree(proposalId));
+        try {
+            switch (pt) {
+                case AGREE:
+                    return ResultUtils.success(proposalService.agree(proposalId));
+                case DISAGREE:
+                    return ResultUtils.success(proposalService.disagree(proposalId));
+            }
+        } catch (ProposalException e) {
+            return ResultUtils.fail(e);
         }
 
         return ResultUtils.error("will never reach");

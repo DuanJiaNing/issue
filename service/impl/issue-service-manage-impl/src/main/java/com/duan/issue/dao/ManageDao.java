@@ -1,5 +1,6 @@
 package com.duan.issue.dao;
 
+import com.duan.issue.base.dao.BaseDao;
 import com.duan.issue.common.entity.Manage;
 import org.springframework.stereotype.Repository;
 

@@ -10,6 +10,7 @@
 
     <modules>
         <module>issue-api</module>
+        <module>common/service-base-dep</module>
 
         <module>service/issue-service-topic</module>
         <module>service/impl/issue-service-topic-impl</module>

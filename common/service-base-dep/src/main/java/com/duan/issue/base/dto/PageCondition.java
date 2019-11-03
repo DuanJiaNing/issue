@@ -1,4 +1,4 @@
-package com.duan.issue.common.dto;
+package com.duan.issue.base.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

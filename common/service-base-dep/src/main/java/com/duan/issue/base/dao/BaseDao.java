@@ -1,4 +1,4 @@
-package com.duan.issue.dao;
+package com.duan.issue.base.dao;
 
 /**
  * Created on 2019/10/25.
@@ -6,6 +6,14 @@ package com.duan.issue.dao;
  * @author DuanJiaNing
  */
 public interface BaseDao<T> {
+
+    /**
+     * 根据 id 查找数据
+     *
+     * @param id id
+     * @return 记录
+     */
+    T findById(int id);
 
     /**
      * 更新数据

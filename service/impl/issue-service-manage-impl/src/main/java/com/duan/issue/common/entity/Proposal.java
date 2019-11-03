@@ -16,7 +16,10 @@ public class Proposal implements Serializable {
     private static final long serialVersionUID = -3874340109656211334L;
     private Integer id;
     private Timestamp insertTime;
+    private Timestamp closeTime;
 
+    private Integer status;
+    private String reason;
     private Integer proposalType;
     private Integer subjectType;
     private Integer subjectId;

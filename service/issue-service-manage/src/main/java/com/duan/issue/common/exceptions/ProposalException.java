@@ -6,4 +6,11 @@ package com.duan.issue.common.exceptions;
  * @author DuanJiaNing
  */
 public class ProposalException extends ManageException {
+    public ProposalException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ProposalException(String message) {
+        super(message);
+    }
 }

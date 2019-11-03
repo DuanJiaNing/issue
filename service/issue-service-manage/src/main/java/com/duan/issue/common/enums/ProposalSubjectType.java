@@ -5,8 +5,9 @@ package com.duan.issue.common.enums;
  *
  * @author DuanJiaNing
  */
-public enum SubjectType {
+public enum ProposalSubjectType {
 
+    // do not reorder, someone is relay on ordinal() method
     TOPIC,
     COMMENT
 

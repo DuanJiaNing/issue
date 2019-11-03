@@ -1,4 +1,4 @@
-package com.duan.issue.common.exceptions;
+package com.duan.issue.base.exceptions;
 
 /**
  * Created on 2019/11/1.

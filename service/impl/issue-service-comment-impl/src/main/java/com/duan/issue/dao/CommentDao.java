@@ -1,5 +1,6 @@
 package com.duan.issue.dao;
 
+import com.duan.issue.base.dao.BaseDao;
 import com.duan.issue.common.entity.Comment;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +13,6 @@ import java.util.List;
  */
 @Repository
 public interface CommentDao extends BaseDao<Comment> {
-
-    Comment findById(int id);
 
     List<Comment> findByTopicId(int topicId);
 }

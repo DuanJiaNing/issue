@@ -1,8 +1,8 @@
 package com.duan.issue.impl;
 
-import com.duan.issue.DataConverter;
+import com.duan.issue.base.dto.PageCondition;
+import com.duan.issue.base.util.DataConverter;
 import com.duan.issue.common.dto.CommentDTO;
-import com.duan.issue.common.dto.PageCondition;
 import com.duan.issue.common.entity.Comment;
 import com.duan.issue.common.enums.CommentStatus;
 import com.duan.issue.common.exceptions.CommentException;

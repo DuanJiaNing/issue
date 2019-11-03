@@ -1,4 +1,4 @@
-package com.duan.issue;
+package com.duan.issue.base.util;
 
 import com.github.pagehelper.Page;
 import org.modelmapper.ModelMapper;

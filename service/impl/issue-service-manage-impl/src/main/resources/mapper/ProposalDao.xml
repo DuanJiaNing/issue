@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.issue.dao.ProposalDao">
+
+    <select id="findById" resultType="com.duan.issue.common.entity.Proposal">
+        SELECT a.id, a.status, a.reason, a.proposal_type, a.subject_type,a.subject_id,a.agree,a.disagree,a.insert_time,
+        a.close_time
+        FROM proposal a
+        WHERE a.id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.duan.issue.common.entity.Proposal">
+        UPDATE proposal
+        <set>
+            <if test="status != null">
+                status=#{status},
+            </if>
+            <if test="reason != null">
+                reason=#{reason},
+            </if>
+            <if test="proposalType != null">
+                proposal_type=#{proposalType},
+            </if>
+            <if test="subjectType != null">
+                subject_type=#{subjectType},
+            </if>
+            <if test="subjectId != null">
+                subject_id=#{subjectId},
+            </if>
+            <if test="agree != null">
+                agree=#{agree},
+            </if>
+            <if test="disagree != null">
+                disagree=#{disagree},
+            </if>
+            <if test="closeTime != null">
+                close_time=#{closeTime},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <insert id="insert" parameterType="com.duan.issue.common.entity.Proposal" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO proposal (status, reason, proposal_type, subject_type,subject_id)
+        VALUE (#{status}, #{reason}, #{proposalType}, #{subjectType},#{subjectId})
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM proposal
+        WHERE id = #{value}
+    </delete>
+
+</mapper>

@@ -5,9 +5,10 @@ package com.duan.issue.common.enums;
  *
  * @author DuanJiaNing
  */
-public enum ProposalType {
+public enum ProposalStatus {
 
     // do not reorder, someone is relay on ordinal() method
-    DELETE
+    OPEN,
+    CLOSE
 
 }

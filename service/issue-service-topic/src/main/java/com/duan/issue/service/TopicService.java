@@ -1,6 +1,7 @@
 package com.duan.issue.service;
 
 
+import com.duan.issue.base.service.Service;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.exceptions.TopicException;
 
@@ -9,9 +10,7 @@ import com.duan.issue.common.exceptions.TopicException;
  *
  * @author DuanJiaNing
  */
-public interface TopicService {
-
-    TopicDTO get(int id);
+public interface TopicService extends Service<TopicDTO> {
 
     TopicDTO like(int id) throws TopicException;
 

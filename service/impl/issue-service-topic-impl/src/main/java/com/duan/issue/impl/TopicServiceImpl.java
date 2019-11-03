@@ -1,11 +1,11 @@
 package com.duan.issue.impl;
 
-import com.duan.issue.DataConverter;
+import com.duan.issue.base.exceptions.InternalException;
+import com.duan.issue.base.util.DataConverter;
 import com.duan.issue.common.TopicStatus;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.entity.Topic;
 import com.duan.issue.common.exceptions.IllegalStatusException;
-import com.duan.issue.common.exceptions.InternalException;
 import com.duan.issue.common.exceptions.TopicException;
 import com.duan.issue.dao.TopicDao;
 import com.duan.issue.service.TopicService;

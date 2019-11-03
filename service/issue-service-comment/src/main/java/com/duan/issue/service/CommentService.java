@@ -1,8 +1,9 @@
 package com.duan.issue.service;
 
 
+import com.duan.issue.base.dto.PageCondition;
+import com.duan.issue.base.service.Service;
 import com.duan.issue.common.dto.CommentDTO;
-import com.duan.issue.common.dto.PageCondition;
 import com.duan.issue.common.exceptions.CommentException;
 import com.github.pagehelper.Page;
 
@@ -11,13 +12,11 @@ import com.github.pagehelper.Page;
  *
  * @author DuanJiaNing
  */
-public interface CommentService {
+public interface CommentService extends Service<CommentDTO> {
 
     CommentDTO add(String content, int topicId) throws CommentException;
 
     CommentDTO like(int id) throws CommentException;
-
-    CommentDTO get(int id);
 
     CommentDTO dislike(int id) throws CommentException;
 
