@@ -12,7 +12,7 @@
         <property name="CONSOLE_LOG_COLOR_PATTERN"
                   value="[%d{yyyy-MM-dd HH:mm:ss}] [%highlight(%5level)] %cyan(%logger{36}) [%file:%line] - %msg%n"/>
 
-        <property name="FILE_NAME_PATTERN" value="./logs/issue-topic-service-dev.log.%d{yyyy-MM-dd}"/>
+        <property name="FILE_NAME_PATTERN" value="./logs/issue-service-topic-dev.log.%d{yyyy-MM-dd}"/>
 
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -46,7 +46,7 @@
             </encoder>
         </appender>
 
-        <property name="FILE_NAME_PATTERN" value="./logs/issue-topic-service.log.%d{yyyy-MM-dd}"/>
+        <property name="FILE_NAME_PATTERN" value="./logs/issue-service-topic.log.%d{yyyy-MM-dd}"/>
 
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

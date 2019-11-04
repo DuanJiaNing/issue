@@ -39,7 +39,7 @@ public class ProposalController {
             return ResultUtils.error("请输入原因");
         }
 
-        Config.Manage manage = config.manage();
+        Config.Manage manage = config.getManage();
         if (proposal.getReason().length() > manage.getProposalWordLimit()) {
             return ResultUtils.error("字数需要控制在 " + manage.getProposalWordLimit() + " 字以内");
         }

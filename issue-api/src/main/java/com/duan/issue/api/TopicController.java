@@ -1,5 +1,6 @@
 package com.duan.issue.api;
 
+import com.duan.issue.base.dto.PageCondition;
 import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.dto.TopicDTO;
@@ -36,14 +37,18 @@ public class TopicController {
     private Config config;
 
     @PostMapping
-    public ResultModel<TopicDTO> add(@RequestParam String title, @RequestParam String notes) {
+    public ResultModel<TopicDTO> add(@RequestParam String title, @RequestParam(required = false) String notes) {
         if (StringUtils.isBlank(title)) {
             return ResultUtils.error("请输入标题");
         }
 
-        Config.Topic topicC = config.topic();
+        Config.Topic topicC = config.getTopic();
         if (title.length() > topicC.getWordLimit()) {
-            return ResultUtils.error("字数需要控制在 " + topicC.getWordLimit() + " 字以内");
+            return ResultUtils.error("标题字数需要控制在 " + topicC.getWordLimit() + " 字以内");
+        }
+
+        if (StringUtils.isNotBlank(notes) && notes.length() > topicC.getNotesLimit()) {
+            return ResultUtils.error("备注字数需要控制在 " + topicC.getNotesLimit() + " 字以内");
         }
 
         try {

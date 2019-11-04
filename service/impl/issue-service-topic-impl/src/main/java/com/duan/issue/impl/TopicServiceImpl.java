@@ -83,6 +83,8 @@ public class TopicServiceImpl implements TopicService {
             throw new TopicException("Fail to add topic: topic title can not be empty");
         }
 
+        // TODO check exist by title
+
         Topic topic = new Topic();
         if (StringUtils.isNotBlank(notes)) {
             topic.setNotes(notes);

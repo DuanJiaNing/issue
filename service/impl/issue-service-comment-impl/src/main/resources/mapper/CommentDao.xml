@@ -5,13 +5,13 @@
 <mapper namespace="com.duan.issue.dao.CommentDao">
 
     <select id="findById" resultType="com.duan.issue.common.entity.Comment">
-        SELECT a.id, a.topic_id, a.content, a.status, a."like",a.dislike,a.insert_time
+        SELECT a.id, a.topic_id, a.content, a.status, a.`like`,a.dislike,a.insert_time
         FROM comment a
         WHERE a.id = #{value}
     </select>
 
     <select id="findByTopicId" resultType="com.duan.issue.common.entity.Comment">
-        SELECT a.id, a.topic_id, a.content, a.status, a."like",a.dislike,a.insert_time
+        SELECT a.id, a.topic_id, a.content, a.status, a.`like`,a.dislike,a.insert_time
         FROM comment a
         WHERE a.topic_id = #{value}
     </select>
@@ -41,7 +41,7 @@
     </update>
 
     <insert id="insert" parameterType="com.duan.issue.common.entity.Comment" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO comment (topic_id, content, status, "like",dislike)
+        INSERT INTO comment (topic_id, content, status, `like`,dislike)
         VALUE (#{topicId}, #{conent}, #{status}, #{like},#{dislike})
     </insert>
 

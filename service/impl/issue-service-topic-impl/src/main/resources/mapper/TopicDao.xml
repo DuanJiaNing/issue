@@ -5,7 +5,7 @@
 <mapper namespace="com.duan.issue.dao.TopicDao">
 
     <select id="findById" resultType="com.duan.issue.common.entity.Topic">
-    SELECT a.id, a.status, a.title, a.notes, a."like",a.dislike,a.insert_time
+    SELECT a.id, a.status, a.title, a.notes, a.`like`,a.dislike,a.insert_time
         FROM topic a
         WHERE a.id = #{value}
     </select>
@@ -35,7 +35,7 @@
     </update>
 
     <insert id="insert" parameterType="com.duan.issue.common.entity.Topic" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO topic (status, title, notes,"like",dislike)
+        INSERT INTO topic (status, title, notes,`like`,dislike)
         VALUE (#{status}, #{title}, #{notes},#{like},#{dislike})
     </insert>
 

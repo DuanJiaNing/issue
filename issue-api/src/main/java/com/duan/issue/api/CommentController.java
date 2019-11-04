@@ -39,7 +39,7 @@ public class CommentController {
             return ResultUtils.error("请输入内容");
         }
 
-        Config.Comment commentC = config.comment();
+        Config.Comment commentC = config.getComment();
         if (content.length() > commentC.getWordLimit()) {
             return ResultUtils.error("字数需要控制在 " + commentC.getWordLimit() + " 字以内");
         }

@@ -1,3 +1,12 @@
 spring:
   profiles:
     active: dev
+
+config:
+  topic:
+    word-limit: 20
+    notes-limit: 200
+  comment:
+    word-limit: 300
+  manage:
+    proposal-word-limit: 500
