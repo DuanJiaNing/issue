@@ -2,6 +2,13 @@ spring:
   profiles:
     active: dev
 
+grpc:
+  client:
+    GLOBAL:
+      enableKeepAlive: true
+    session-grpc:
+      address: static://127.0.0.1:10021
+
 config:
   topic:
     word-limit: 20

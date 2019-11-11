@@ -1,6 +1,5 @@
 package com.duan.issue.common.entity;
 
-import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,7 +9,6 @@ import java.sql.Timestamp;
  *
  * @author DuanJiaNing
  */
-@Data
 public class Proposal implements Serializable {
 
     private static final long serialVersionUID = -3874340109656211334L;
@@ -26,4 +24,83 @@ public class Proposal implements Serializable {
     private Integer agree;
     private Integer disagree;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Timestamp getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Timestamp insertTime) {
+        this.insertTime = insertTime;
+    }
+
+    public Timestamp getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(Timestamp closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public Integer getProposalType() {
+        return proposalType;
+    }
+
+    public void setProposalType(Integer proposalType) {
+        this.proposalType = proposalType;
+    }
+
+    public Integer getSubjectType() {
+        return subjectType;
+    }
+
+    public void setSubjectType(Integer subjectType) {
+        this.subjectType = subjectType;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public Integer getAgree() {
+        return agree;
+    }
+
+    public void setAgree(Integer agree) {
+        this.agree = agree;
+    }
+
+    public Integer getDisagree() {
+        return disagree;
+    }
+
+    public void setDisagree(Integer disagree) {
+        this.disagree = disagree;
+    }
 }

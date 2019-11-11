@@ -2,7 +2,7 @@ package com.duan.issue.utils;
 
 import com.duan.issue.common.ResultModel;
 import com.github.pagehelper.Page;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
@@ -12,7 +12,6 @@ import java.io.Serializable;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 public class ResultUtils {
 
     // user understandable
@@ -33,7 +32,7 @@ public class ResultUtils {
 
     public static ResultModel fail(Throwable e) {
         e.printStackTrace();
-        log.error("error when handle request", e);
+        LoggerFactory.getLogger(ResultUtils.class).error("error when handle request", e);
 
         ResultModel rm = new ResultModel();
         rm.setMsg(e.getMessage());

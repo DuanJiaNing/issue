@@ -1,5 +1,6 @@
 package com.duan.issue.config;
 
+import io.grpc.CallCredentials;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

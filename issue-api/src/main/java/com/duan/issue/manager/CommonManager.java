@@ -3,8 +3,9 @@ package com.duan.issue.manager;
 import com.duan.issue.common.TopicStatus;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.service.TopicService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +13,10 @@ import org.springframework.stereotype.Service;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 @Service
 public class CommonManager {
+
+    private static Logger log = LoggerFactory.getLogger(CommonManager.class);
 
     @Reference
     private TopicService topicService;

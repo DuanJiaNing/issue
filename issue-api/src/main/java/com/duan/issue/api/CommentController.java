@@ -7,7 +7,6 @@ import com.duan.issue.config.Config;
 import com.duan.issue.manager.CommonManager;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.utils.ResultUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 @RestController
 @RequestMapping("/comment")
 public class CommentController {

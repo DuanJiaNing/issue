@@ -1,6 +1,5 @@
 package com.duan.issue.common.dto;
 
-import lombok.Data;
 
 import java.io.Serializable;
 
@@ -9,7 +8,6 @@ import java.io.Serializable;
  *
  * @author DuanJiaNing
  */
-@Data
 public class ManageDTO implements Serializable {
 
 }

@@ -1,6 +1,7 @@
 package com.duan.issue.impl;
 
 import com.duan.issue.base.dto.PageCondition;
+import com.duan.issue.base.exceptions.InternalException;
 import com.duan.issue.base.util.DataConverter;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.entity.Comment;
@@ -11,7 +12,6 @@ import com.duan.issue.dao.CommentDao;
 import com.duan.issue.service.CommentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;

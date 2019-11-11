@@ -10,7 +10,6 @@ import com.duan.issue.service.CommentService;
 import com.duan.issue.service.TopicService;
 import com.duan.issue.utils.ResultUtils;
 import com.github.pagehelper.Page;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author DuanJiaNing
  */
-@Slf4j
 @RestController
 @RequestMapping("/topic")
 public class TopicController {

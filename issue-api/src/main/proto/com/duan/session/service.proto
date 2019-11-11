@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package com.duan.session;
+
+import "com/duan/session/session.proto";
+import "com/duan/session/user_session.proto";
+
+message UserSessionData {
+    Session session = 1;
+    UserSession user = 2;
+}
+
+message JoinRequest {
+    string session_id = 1;
+    string user_id = 2;
+}
+
+message JoinResponse {
+    UserSessionData user_session = 1;
+}
+
+message LeaveRequest {
+    string session_id = 1;
+    string user_id = 2;
+}
+
+message LeaveResponse {
+    UserSessionData user_session = 1;
+}
+
+message RefreshStatusRequest {
+    string session_id = 1;
+    string user_id = 2;
+}
+
+message RefreshStatusResponse {
+    UserSessionData user_session = 1;
+}
+
+message PauseRequest {
+    string session_id = 1;
+    string user_id = 2;
+}
+
+message PauseResponse {
+    UserSessionData user_session = 1;
+}
+
+message UserCountInSessionRequest {
+    string session_id = 1;
+}
+
+message UserCountInSessionResponse {
+    int32 count = 1;
+}
+
+service SessionService {
+
+    // only count user_session.status is OPEN and PENDING
+    rpc UserCountInSession (UserCountInSessionRequest) returns (UserCountInSessionResponse) {
+    }
+
+    rpc Join (JoinRequest) returns (JoinResponse) {
+    }
+
+    // if in pending, will reactive, update reactive_time
+    rpc RefreshStatus (RefreshStatusRequest) returns (RefreshStatusResponse) {
+    }
+
+    rpc Pause (PauseRequest) returns (PauseResponse) {
+    }
+
+    rpc Leave (LeaveRequest) returns (LeaveResponse) {
+        // option (google.api.http) = {
+        //   post: "/v1alpha1/insertData"
+        //   body: "*"
+        // };
+    }
+}
