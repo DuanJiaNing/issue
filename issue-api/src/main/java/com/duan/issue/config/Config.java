@@ -16,6 +16,15 @@ public class Config {
     private Comment comment;
     private Manage manage;
     private Session session;
+    private GRpc grpc;
+
+    public GRpc getGrpc() {
+        return grpc;
+    }
+
+    public void setGrpc(GRpc grpc) {
+        this.grpc = grpc;
+    }
 
     public Topic getTopic() {
         return topic;
@@ -112,6 +121,27 @@ public class Config {
 
         public void setProposalWordLimit(int proposalWordLimit) {
             this.proposalWordLimit = proposalWordLimit;
+        }
+    }
+
+    public static class GRpc {
+        private String host;
+        private Integer port;
+
+        public String getHost() {
+            return host;
+        }
+
+        public void setHost(String host) {
+            this.host = host;
+        }
+
+        public Integer getPort() {
+            return port;
+        }
+
+        public void setPort(Integer port) {
+            this.port = port;
         }
     }
 

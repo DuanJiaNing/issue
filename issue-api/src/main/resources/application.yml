@@ -2,14 +2,10 @@ spring:
   profiles:
     active: dev
 
-grpc:
-  client:
-    GLOBAL:
-      enableKeepAlive: true
-    session-grpc:
-      address: static://127.0.0.1:10021
-
 config:
+  grpc:
+    host: 127.0.0.1
+    port: 50051
   topic:
     word-limit: 20
     notes-limit: 200
