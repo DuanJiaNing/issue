@@ -12,6 +12,7 @@ import com.duan.issue.dao.CommentDao;
 import com.duan.issue.service.CommentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,15 +105,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Page<CommentDTO> listByTopic(int topicId, PageCondition pageCondition) {
-        if (pageCondition == null || pageCondition.getCurrentPage() < 0 || pageCondition.getPageSize() <= 0) {
+    public PageInfo<CommentDTO> listByTopic(int topicId, PageCondition pageCondition) {
+        if (pageCondition == null || pageCondition.getPageNum() < 0 || pageCondition.getPageSize() <= 0) {
             // no page query is not allowed, set default to 0,10
             pageCondition = new PageCondition();
-            pageCondition.setCurrentPage(0);
+            pageCondition.setPageNum(0);
             pageCondition.setPageSize(10);
         }
 
-        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize());
+        PageHelper.startPage(pageCondition.getPageNum(), pageCondition.getPageSize());
         List<Comment> pageList = commentDao.findByTopicId(topicId);
         return DataConverter.page(pageList, CommentDTO.class);
     }

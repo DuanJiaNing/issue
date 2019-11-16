@@ -1,8 +1,9 @@
 package com.duan.issue.base.util;
 
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,29 +22,21 @@ public class DataConverter {
     }
 
 
-    public static <Entity, DTO> Page<DTO> page(List<Entity> pageList, Class<DTO> clasz) {
-        Page<Entity> epage = (Page) pageList;
-        Page<DTO> dpage = new Page<>();
-        for (Entity e : epage) {
+    public static <Entity, DTO> PageInfo<DTO> page(List<Entity> pageList, Class<DTO> clasz) {
+        PageInfo<Entity> temp = new PageInfo<>(pageList);
+        PageInfo<DTO> rpage = new PageInfo<>();
+        ArrayList<DTO> dtos = new ArrayList<>(temp.getList().size());
+        for (Entity e : temp.getList()) {
             DTO dto = DataConverter.map(e, clasz);
-            dpage.add(dto);
+            dtos.add(dto);
         }
 
-        dpage.setPageNum(epage.getPageNum());
-        dpage.setPageSize(epage.getPageSize());
-        dpage.setTotal(epage.getTotal());
-        dpage.setPages(epage.getPages());
+        rpage.setList(dtos);
+        rpage.setPageNum(temp.getPageNum());
+        rpage.setPageSize(temp.getPageSize());
+        rpage.setTotal(temp.getTotal());
+        rpage.setPages(temp.getPages());
 
-        /*
-        dpage.setOrderBy(epage.getOrderBy());
-        if (dpage.size() == 0) {
-            dpage.setStartRow(0);
-            dpage.setEndRow(0);
-        } else {
-            dpage.setStartRow(epage.getStartRow() + 1);
-            dpage.setEndRow(dpage.getStartRow() - 1 + dpage.size());
-        }*/
-
-        return dpage;
+        return rpage;
     }
 }

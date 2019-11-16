@@ -1,15 +1,18 @@
 package com.duan.issue.api;
 
 import com.duan.issue.base.dto.PageCondition;
+import com.duan.issue.common.PageModel;
 import com.duan.issue.common.ResultModel;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.exceptions.TopicException;
 import com.duan.issue.config.Config;
+import com.duan.issue.manager.ControllerManager;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.service.TopicService;
 import com.duan.issue.utils.ResultUtils;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,9 @@ public class TopicController {
 
     @Reference
     private CommentService commentService;
+
+    @Autowired
+    private ControllerManager controllerManager;
 
     @Autowired
     private Config config;
@@ -63,6 +69,21 @@ public class TopicController {
         return ResultUtils.success(topic);
     }
 
+    @GetMapping("/list")
+    public ResultModel<PageModel<TopicDTO>> list(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                 @RequestParam(defaultValue = "10") Integer pageSize) {
+        if (pageNum < 0 || pageSize <= 0) {
+            return ResultUtils.fail("pageNum or pageSize incorrect", HttpStatus.BAD_REQUEST);
+        }
+
+        PageInfo<TopicDTO> page = topicService.list(new PageCondition(pageNum, pageSize));
+        if (ResultUtils.emptyPage(page)) {
+            return ResultUtils.success(null);
+        }
+
+        return ResultUtils.successPaged(page);
+    }
+
     @PutMapping("/{topicId}/like")
     public ResultModel<TopicDTO> like(@PathVariable Integer topicId) {
         try {
@@ -84,19 +105,19 @@ public class TopicController {
     }
 
     @GetMapping("/{topicId}/comments")
-    public ResultModel<Page<CommentDTO>> allTopicComments(@PathVariable Integer topicId,
-                                                          @RequestParam Integer currentPage,
-                                                          @RequestParam Integer pageSize) {
-        if (currentPage < 0 || pageSize <= 0) {
-            return ResultUtils.fail("currentPage or pageSize incorrect", HttpStatus.BAD_REQUEST);
+    public ResultModel<PageModel<CommentDTO>> allTopicComments(@PathVariable Integer topicId,
+                                                          @RequestParam(defaultValue = "1") Integer pageNum,
+                                                          @RequestParam(defaultValue = "10") Integer pageSize) {
+        if (pageNum < 0 || pageSize <= 0) {
+            return ResultUtils.fail("pageNum or pageSize incorrect", HttpStatus.BAD_REQUEST);
         }
 
-        Page<CommentDTO> page = commentService.listByTopic(topicId, new PageCondition(currentPage, pageSize));
+        PageInfo<CommentDTO> page = commentService.listByTopic(topicId, new PageCondition(pageNum, pageSize));
         if (ResultUtils.emptyPage(page)) {
             return ResultUtils.success(null);
         }
 
-        return ResultUtils.success(page);
+        return ResultUtils.successPaged(page);
     }
 
 }

@@ -6,6 +6,7 @@ import com.duan.issue.base.service.Service;
 import com.duan.issue.common.dto.CommentDTO;
 import com.duan.issue.common.exceptions.CommentException;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 /**
  * Created on 2019/10/25.
@@ -20,6 +21,6 @@ public interface CommentService extends Service<CommentDTO> {
 
     CommentDTO dislike(int id) throws CommentException;
 
-    Page<CommentDTO> listByTopic(int topicId, PageCondition pageCondition);
+    PageInfo<CommentDTO> listByTopic(int topicId, PageCondition pageCondition);
 
 }

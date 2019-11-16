@@ -1,7 +1,8 @@
 package com.duan.issue.utils;
 
+import com.duan.issue.common.PageModel;
 import com.duan.issue.common.ResultModel;
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
@@ -48,7 +49,18 @@ public class ResultUtils {
         return rm;
     }
 
-    public static boolean emptyPage(Page page) {
-        return page == null || page.getTotal() == 0 || page.size() == 0;
+    public static <T extends Serializable> ResultModel<PageModel<T>> successPaged(PageInfo<T> page) {
+        PageModel<T> pm = new PageModel<>();
+        pm.setList(page.getList());
+        pm.setPageNum(page.getPageNum());
+        pm.setPages(page.getPages());
+        pm.setPageSize(page.getPageSize());
+        pm.setTotal(page.getTotal());
+
+        return success(pm);
+    }
+
+    public static boolean emptyPage(PageInfo page) {
+        return page == null || page.getTotal() == 0 || page.getList() == null || page.getList().size() == 0;
     }
 }

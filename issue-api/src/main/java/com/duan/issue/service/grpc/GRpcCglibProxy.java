@@ -29,7 +29,7 @@ public class GRpcCglibProxy implements MethodInterceptor {
     }
 
     public static <Stub> Stub getProxy(Class<Stub> stubClass) {
-        SessionServiceGrpc.newBlockingStub(channel.getChannel());
+//        SessionServiceGrpc.newBlockingStub(channel.getChannel());
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(stubClass);
         enhancer.setCallback(new GRpcCglibProxy());

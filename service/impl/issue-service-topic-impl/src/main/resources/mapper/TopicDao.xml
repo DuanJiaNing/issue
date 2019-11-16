@@ -10,6 +10,11 @@
         WHERE a.id = #{value}
     </select>
 
+    <select id="find" resultType="com.duan.issue.common.entity.Topic">
+    SELECT a.id, a.status, a.title, a.notes, a.`like`,a.dislike,a.insert_time
+        FROM topic a
+    </select>
+
     <update id="update" parameterType="com.duan.issue.common.entity.Topic">
         UPDATE topic
         <set>

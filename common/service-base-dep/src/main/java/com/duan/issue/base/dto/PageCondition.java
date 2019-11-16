@@ -10,30 +10,30 @@ import java.io.Serializable;
 public class PageCondition implements Serializable {
 
     private static final long serialVersionUID = -8513040746063864619L;
-    private Integer currentPage;
-    private Integer pageSize;
+    private int pageNum;
+    private int pageSize;
 
     public PageCondition() {
     }
 
-    public PageCondition(Integer currentPage, Integer pageSize) {
-        this.currentPage = currentPage;
+    public PageCondition(int pageNum, int pageSize) {
+        this.pageNum = pageNum;
         this.pageSize = pageSize;
     }
 
-    public Integer getCurrentPage() {
-        return currentPage;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
-    public Integer getPageSize() {
+    public int getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Integer pageSize) {
+    public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
 }
