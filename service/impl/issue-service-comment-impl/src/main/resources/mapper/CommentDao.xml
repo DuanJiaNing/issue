@@ -42,7 +42,7 @@
 
     <insert id="insert" parameterType="com.duan.issue.common.entity.Comment" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO comment (topic_id, content, status, `like`,dislike)
-        VALUE (#{topicId}, #{conent}, #{status}, #{like},#{dislike})
+        VALUE (#{topicId}, #{content}, #{status}, #{like},#{dislike})
     </insert>
 
     <delete id="delete">
