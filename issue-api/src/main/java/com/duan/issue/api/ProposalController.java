@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/proposal")
+@RequestMapping("/api/proposal")
 public class ProposalController {
 
     @Reference

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 public class CommentController {
 
     @Reference

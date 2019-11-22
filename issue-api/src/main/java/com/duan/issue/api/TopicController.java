@@ -11,7 +11,6 @@ import com.duan.issue.manager.ControllerManager;
 import com.duan.issue.service.CommentService;
 import com.duan.issue.service.TopicService;
 import com.duan.issue.utils.ResultUtils;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/topic")
+@RequestMapping("/api/topic")
 public class TopicController {
 
     @Reference
@@ -106,8 +105,8 @@ public class TopicController {
 
     @GetMapping("/{topicId}/comments")
     public ResultModel<PageModel<CommentDTO>> allTopicComments(@PathVariable Integer topicId,
-                                                          @RequestParam(defaultValue = "1") Integer pageNum,
-                                                          @RequestParam(defaultValue = "10") Integer pageSize) {
+                                                               @RequestParam(defaultValue = "1") Integer pageNum,
+                                                               @RequestParam(defaultValue = "10") Integer pageSize) {
         if (pageNum < 0 || pageSize <= 0) {
             return ResultUtils.fail("pageNum or pageSize incorrect", HttpStatus.BAD_REQUEST);
         }
