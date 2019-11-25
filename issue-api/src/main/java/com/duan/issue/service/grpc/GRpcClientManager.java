@@ -19,19 +19,15 @@ public class GRpcClientManager {
     @Autowired
     private Config config;
 
-    private ThreadLocal<Channel> threadChannel = new ThreadLocal<>();
     private static final int channel_shutdown_timeout = 5;
 
-    // always close after use
     public Channel getChannel() {
         ManagedChannel channel = ManagedChannelBuilder.forAddress(config.getGrpc().getHost(), config.getGrpc().getPort())
                 .disableRetry()
                 .usePlaintext()
                 .idleTimeout(2, TimeUnit.SECONDS)
                 .build();
-        Channel internalManagedChannel = new Channel(channel);
-        threadChannel.set(internalManagedChannel);
-        return internalManagedChannel;
+        return new Channel(channel);
     }
 
     public static class Channel {

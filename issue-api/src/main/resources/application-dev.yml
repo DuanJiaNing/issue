@@ -4,11 +4,3 @@ spring:
     serialization:
       write_dates_as_timestamps: false
     default-property-inclusion: NON_NULL
-
-
-grpc:
-  client:
-    GLOBAL:
-      enableKeepAlive: true
-    session:
-      address: http://localhost:10021

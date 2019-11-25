@@ -5,8 +5,8 @@ package com.duan.issue.service.grpc.interfaces;
  *
  * @author DuanJiaNing
  */
-public interface Session {
+public interface SessionService {
 
-    int userCountInSession(String sessionId);
+    int userCountInSession(long sessionId);
 
 }
