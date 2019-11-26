@@ -3,6 +3,7 @@ package com.duan.issue;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.PropertySource;
  * @author DuanJiaNing
  */
 @SpringBootApplication
+@EnableAspectJAutoProxy
 @EnableDubbo(scanBasePackages = "com.duan.issue")
 @PropertySource("classpath:/dubbo-consumer.properties")
 public class Application {

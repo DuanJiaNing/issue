@@ -8,12 +8,21 @@ import java.io.Serializable;
  * @author DuanJiaNing
  */
 public class UserCountInSessionVO implements Serializable {
+
     private Integer count;
 
     public UserCountInSessionVO() {
     }
 
     public UserCountInSessionVO(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
         this.count = count;
     }
 }

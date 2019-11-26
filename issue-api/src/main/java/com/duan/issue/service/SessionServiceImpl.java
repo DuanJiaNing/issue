@@ -1,6 +1,7 @@
 package com.duan.issue.service;
 
-import com.duan.issue.service.grpc.GRpcCglibProxy;
+import com.duan.issue.common.annotations.GRpcService;
+import com.duan.issue.service.grpc.GRpcServiceProxy;
 import com.duan.issue.service.grpc.interfaces.SessionService;
 import com.duan.session.Service;
 import com.duan.session.SessionServiceGrpc;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @author DuanJiaNing
  */
 @Component
+@GRpcService
 public class SessionServiceImpl implements SessionService {
 
     @Override
@@ -20,8 +22,7 @@ public class SessionServiceImpl implements SessionService {
                 .setSessionId(sessionId)
                 .build();
 
-        // FIX Cannot subclass final class class com.duan.session.SessionServiceGrpc$SessionServiceBlockingStub
-        SessionServiceGrpc.SessionServiceBlockingStub stub = GRpcCglibProxy.getProxy(SessionServiceGrpc.SessionServiceBlockingStub.class);
+        var stub = GRpcServiceProxy.getStub(SessionServiceGrpc::newBlockingStub);
         Service.UserCountInSessionResponse response = stub.userCountInSession(request);
         int count = response.getCount();
         return count;
