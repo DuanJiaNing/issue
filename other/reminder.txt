@@ -28,3 +28,5 @@ Potential
 Rest
 
 footer
+
+部署服务的服务器需要在防火墙中开启服务的端口以及dubbo的端口，否则dubbo服务无法调用通
