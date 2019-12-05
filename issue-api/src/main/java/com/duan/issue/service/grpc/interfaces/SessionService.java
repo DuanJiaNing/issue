@@ -7,6 +7,6 @@ package com.duan.issue.service.grpc.interfaces;
  */
 public interface SessionService {
 
-    int userCountInSession(long sessionId);
+    long parliamentaryCountInSession(long sessionId);
 
 }

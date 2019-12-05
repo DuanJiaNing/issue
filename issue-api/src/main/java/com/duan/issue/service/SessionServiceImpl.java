@@ -17,15 +17,14 @@ import org.springframework.stereotype.Component;
 public class SessionServiceImpl implements SessionService {
 
     @Override
-    public int userCountInSession(long sessionId) {
-        Service.UserCountInSessionRequest request = Service.UserCountInSessionRequest.newBuilder()
+    public long parliamentaryCountInSession(long sessionId) {
+        Service.ParliamentaryCountInSessionRequest request = Service.ParliamentaryCountInSessionRequest.newBuilder()
                 .setSessionId(sessionId)
                 .build();
 
         var stub = GRpcServiceProxy.getStub(SessionServiceGrpc::newBlockingStub);
-        Service.UserCountInSessionResponse response = stub.userCountInSession(request);
-        int count = response.getCount();
-        return count;
+        Service.ParliamentaryCountInSessionResponse response = stub.parliamentaryCountInSession(request);
+        return response.getCount();
     }
 
 }

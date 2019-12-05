@@ -1,7 +1,7 @@
 package com.duan.issue.api;
 
 import com.duan.issue.common.ResultModel;
-import com.duan.issue.common.vo.UserCountInSessionVO;
+import com.duan.issue.common.vo.ParliamentaryCountInSessionVO;
 import com.duan.issue.service.grpc.interfaces.SessionService;
 import com.duan.issue.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,11 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
-    // TODO test
-    @GetMapping("/count/{sessionId}")
-    public ResultModel<UserCountInSessionVO> userCountInSession(@PathVariable String sessionId) {
+    @GetMapping("/{sessionId}/parliamentaryCount")
+    public ResultModel<ParliamentaryCountInSessionVO> parliamentaryCount(@PathVariable String sessionId) {
         Long sid = Long.valueOf(sessionId);
-        int count = sessionService.userCountInSession(sid);
-
-        return ResultUtils.success(new UserCountInSessionVO(count));
+        long count = sessionService.parliamentaryCountInSession(sid);
+        return ResultUtils.success(new ParliamentaryCountInSessionVO(count));
     }
 
 }
