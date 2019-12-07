@@ -11,6 +11,6 @@ done
 echo "prepare to deploy $NAME after 10s..."
 
 sleep 10s
-java -jar /usr/duan/jenkins/issue/jar/issue-api-1.0-SNAPSHOT.jar > /usr/duan/jenkins/issue/log/api.log 2>&1 &
+java -Xmx256m -jar /usr/duan/jenkins/issue/jar/issue-api-1.0-SNAPSHOT.jar > /usr/duan/jenkins/issue/log/api.log 2>&1 &
 
 echo excute success from deploy-api.sh
