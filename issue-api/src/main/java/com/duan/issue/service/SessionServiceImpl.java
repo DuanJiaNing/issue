@@ -22,7 +22,7 @@ public class SessionServiceImpl implements SessionService {
                 .setSessionId(sessionId)
                 .build();
 
-        var stub = GRpcServiceProxy.getStub(SessionServiceGrpc::newBlockingStub);
+        SessionServiceGrpc.SessionServiceBlockingStub stub = GRpcServiceProxy.getStub(SessionServiceGrpc::newBlockingStub);
         Service.ParliamentaryCountInSessionResponse response = stub.parliamentaryCountInSession(request);
         return response.getCount();
     }
