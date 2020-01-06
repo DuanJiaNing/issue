@@ -1,6 +1,8 @@
 package com.duan.issue.common.entity;
 
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -9,35 +11,12 @@ import java.sql.Timestamp;
  *
  * @author DuanJiaNing
  */
+@Data
 public class Manage implements Serializable {
 
-    // TODO seriaID
+    private static final long serialVersionUID = -2432682745862505668L;
     private Integer id;
     private Timestamp insertTime;
 
     private Integer status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Timestamp getInsertTime() {
-        return insertTime;
-    }
-
-    public void setInsertTime(Timestamp insertTime) {
-        this.insertTime = insertTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 }
