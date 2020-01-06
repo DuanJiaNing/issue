@@ -4,50 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duan.issue.dao.TopicDao">
 
-    <select id="findById" resultType="com.duan.issue.common.entity.Topic">
-    SELECT a.id, a.status, a.title, a.notes, a.`like`,a.dislike,a.insert_time
-        FROM topic a
-        WHERE a.id = #{value}
+    <sql id="allFields">id, user_id, `status`, title, notes, insert_time</sql>
+
+    <select id="findAll" resultType="com.duan.issue.common.entity.Topic">
+        SELECT
+        <include refid="allFields"/>
+        FROM topic
     </select>
 
-    <select id="find" resultType="com.duan.issue.common.entity.Topic">
-    SELECT a.id, a.status, a.title, a.notes, a.`like`,a.dislike,a.insert_time
-        FROM topic a
-    </select>
-
-    <update id="update" parameterType="com.duan.issue.common.entity.Topic">
-        UPDATE topic
-        <set>
+    <select id="find" resultType="com.duan.issue.common.entity.Topic"
+            parameterType="com.duan.issue.common.entity.Topic">
+        SELECT
+        <include refid="allFields"/>
+        FROM topic
+        <where>
+            <if test="id != null">
+                id=#{id} AND
+            </if>
+            <if test="id != null">
+                user_id=#{userId} AND
+            </if>
             <if test="status != null">
-                status=#{status},
+                `status`=#{status} AND
             </if>
             <if test="title != null">
-                title=#{title},
+                title=#{title} AND
             </if>
             <if test="notes != null">
-                notes=#{notes},
+                notes=#{notes} AND
             </if>
-            <if test="like != null">
-                `like`=#{like},
+            <if test="insert_time != null">
+                insert_time=#{insertTime} AND
             </if>
-            <if test="dislike != null">
-                dislike=#{dislike},
-            </if>
-        </set>
-        <where>
-            id=#{id}
         </where>
-    </update>
+    </select>
 
     <insert id="insert" parameterType="com.duan.issue.common.entity.Topic" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO topic (status, title, notes,`like`,dislike)
-        VALUE (#{status}, #{title}, #{notes},#{like},#{dislike})
+        INSERT INTO topic (`status`,user_id, title, notes)
+        VALUE (#{status},#{userId}, #{title}, #{notes})
     </insert>
-
-    <delete id="delete">
-        DELETE
-        FROM topic
-        WHERE id = #{value}
-    </delete>
 
 </mapper>

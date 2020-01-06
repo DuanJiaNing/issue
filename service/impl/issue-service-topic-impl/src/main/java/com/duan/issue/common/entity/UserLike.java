@@ -1,6 +1,5 @@
 package com.duan.issue.common.entity;
 
-
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,15 +11,15 @@ import java.sql.Timestamp;
  * @author DuanJiaNing
  */
 @Data
-public class Topic implements Serializable {
+public class UserLike implements Serializable {
 
-    private static final long serialVersionUID = -256865085363011189L;
+    private static final long serialVersionUID = -3055368536449586087L;
     private Integer id;
+    private Integer topicId;
     private String userId;
 
-    private Integer status;
-    private String title;
-    private String notes;
+    private Integer like;
 
     private Timestamp insertTime;
+
 }

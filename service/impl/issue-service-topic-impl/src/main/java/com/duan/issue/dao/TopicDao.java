@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface TopicDao extends BaseDao<Topic> {
 
-    List<Topic> find();
+    List<Topic> findAll();
 }

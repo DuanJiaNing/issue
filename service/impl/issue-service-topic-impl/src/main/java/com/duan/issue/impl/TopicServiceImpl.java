@@ -6,11 +6,9 @@ import com.duan.issue.base.util.DataConverter;
 import com.duan.issue.common.TopicStatus;
 import com.duan.issue.common.dto.TopicDTO;
 import com.duan.issue.common.entity.Topic;
-import com.duan.issue.common.exceptions.IllegalStatusException;
 import com.duan.issue.common.exceptions.TopicException;
 import com.duan.issue.dao.TopicDao;
 import com.duan.issue.service.TopicService;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -30,21 +28,6 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private TopicDao topicDao;
 
-    private Topic getById(int id) throws TopicException {
-        Topic topic = topicDao.findById(id);
-        if (topic == null) {
-            throw new TopicException("Topic is not exist with id=" + id);
-        }
-
-        return topic;
-    }
-
-    private void update(Topic tp) throws TopicException {
-        if (topicDao.update(tp) != 1) {
-            throw new TopicException("Fail to update topic", new InternalException("DB"));
-        }
-    }
-
     @Override
     public TopicDTO get(int id) {
         Topic topic = topicDao.findById(id);
@@ -53,34 +36,12 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public TopicDTO like(int id) throws TopicException {
-        Topic topic = getById(id);
-        if (TopicStatus.DELETED.ordinal() == topic.getStatus()) {
-            throw new IllegalStatusException(TopicStatus.DELETED);
-        }
-
-        Topic ut = new Topic();
-        ut.setId(topic.getId());
-        int newLike = topic.getLike() + 1;
-        ut.setLike(newLike);
-        update(ut);
-
-        return get(id);
+        return null;
     }
 
     @Override
     public TopicDTO dislike(int id) throws TopicException {
-        Topic topic = getById(id);
-        if (TopicStatus.DELETED.ordinal() == topic.getStatus()) {
-            throw new IllegalStatusException(TopicStatus.DELETED);
-        }
-
-        Topic ut = new Topic();
-        ut.setId(topic.getId());
-        int newDislike = topic.getDislike() + 1;
-        ut.setDislike(newDislike);
-        update(ut);
-
-        return get(id);
+        return null;
     }
 
     @Override
@@ -90,6 +51,7 @@ public class TopicServiceImpl implements TopicService {
         }
 
         // TODO check exist by title
+//        topicDao.
 
         Topic topic = new Topic();
         if (StringUtils.isNotBlank(notes)) {
@@ -97,8 +59,6 @@ public class TopicServiceImpl implements TopicService {
         }
         topic.setTitle(title);
         topic.setStatus(TopicStatus.FINE.ordinal());
-        topic.setLike(0);
-        topic.setDislike(0);
         if (topicDao.insert(topic) != 1) {
             throw new TopicException("Fail to add topic", new InternalException("DB"));
         }
@@ -116,7 +76,7 @@ public class TopicServiceImpl implements TopicService {
         }
 
         PageHelper.startPage(pageCondition.getPageNum(), pageCondition.getPageSize());
-        List<Topic> pageList = topicDao.find();
+        List<Topic> pageList = topicDao.findAll();
         return DataConverter.page(pageList, TopicDTO.class);
     }
 }

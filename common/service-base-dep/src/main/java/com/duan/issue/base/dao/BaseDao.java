@@ -1,5 +1,7 @@
 package com.duan.issue.base.dao;
 
+import java.util.List;
+
 /**
  * Created on 2019/10/25.
  *
@@ -14,6 +16,14 @@ public interface BaseDao<T> {
      * @return 记录
      */
     T findById(int id);
+
+    /**
+     * 根据 t 查找数据
+     *
+     * @param t entity
+     * @return 记录
+     */
+    List<T> find(T t);
 
     /**
      * 更新数据
